@@ -401,8 +401,8 @@ GameObject:
   - component: {fileID: 6425068593422721117}
   - component: {fileID: 6731608764508510256}
   - component: {fileID: 8725673990177509980}
-  - component: {fileID: 1552263830021317683}
   - component: {fileID: 7663728275732911179}
+  - component: {fileID: 4067303044409518648}
   m_Layer: 8
   m_Name: pfMainCharacter
   m_TagString: Player
@@ -423,6 +423,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6055131689504179449}
+  - {fileID: 8149660174252375323}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -449,13 +450,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3813041169183934662}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 157c91f5d4cab55408a24dec7d293ae4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.35348096
   m_Height: 1.7
   m_Direction: 1
-  m_Center: {x: 0, y: 0.82, z: 0}
+  m_Center: {x: 0, y: 0.82000005, z: -0.013386518}
 --- !u!114 &7485239955237321671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,20 +537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f749e7dfbad65874bb849df6668ead76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1552263830021317683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3813041169183934662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 527ab74ed079f65438b8067731939ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  brickPrefab: {fileID: 0}
 --- !u!114 &7663728275732911179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +550,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 0}
+  sensivity: 0
+--- !u!114 &4067303044409518648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3813041169183934662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ddc96e4ca19e34e99919b88cf35fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stairLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &4006768694347780836
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +853,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3976085483590142127}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6721990745263219776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8149660174252375323}
+  m_Layer: 8
+  m_Name: StairChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8149660174252375323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721990745263219776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7929567136886762830}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6800666216022628678
 GameObject:

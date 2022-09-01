@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77df9724160c7494ea40c919d98ba630, type: 3}
-  m_Name: YellowBrickSO
+  m_Script: {fileID: 11500000, guid: 0a384e92d9ca07e43a06f3f2b23a810a, type: 3}
+  m_Name: OrangePlayerSO
   m_EditorClassIdentifier: 
-  brick: {fileID: 3229076404053875945, guid: c0710b0ee3bdc6a499cdec2d64df6f1c, type: 3}
-  tag: YellowBrick
+  TagCheckForStacking: OrangeBrick
+  stackAmount: 2
+  material: {fileID: 2100000, guid: deea5aa3ebc652745a2c8e31eb3af3de, type: 2}

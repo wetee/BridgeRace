@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3229076404053875947}
   - component: {fileID: 3229076404053875944}
-  - component: {fileID: -3063786271026917452}
+  - component: {fileID: 6849698819727445772}
   - component: {fileID: 1032096646268158774}
   m_Layer: 9
-  m_Name: pfYellowBrick
-  m_TagString: YellowBrick
+  m_Name: pfOrangeBrick
+  m_TagString: OrangeBrick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.2, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-3063786271026917452
+--- !u!54 &6849698819727445772
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,7 +62,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &1032096646268158774
 MonoBehaviour:
@@ -139,7 +139,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ae37c384f9534044a6c08b4f981ad50, type: 2}
+  - {fileID: 2100000, guid: deea5aa3ebc652745a2c8e31eb3af3de, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

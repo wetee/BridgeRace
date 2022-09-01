@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77df9724160c7494ea40c919d98ba630, type: 3}
-  m_Name: BlueBrick
+  m_Name: BlueBrickSO
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 4e0775ca3d51e5246855a9eae5efadd8, type: 2}
+  brick: {fileID: 3229076404053875945, guid: 6e79b6a79ec852940aba62d72568939e, type: 3}
+  tag: BlueBrick

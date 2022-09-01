@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CollectibleMaterial
+  m_Name: BridgeMaterial
   m_Shader: {fileID: 4800000, guid: 3381d7ccf8d756546ba7dd0f2f58095f, type: 3}
   m_ValidKeywords:
   - _USEOUTLINE_ON
@@ -96,7 +96,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineWidth: 0.025
+    - _OutlineWidth: 0.01
     - _Parallax: 0.02
     - _RIM: 0
     - _RimPower: 0

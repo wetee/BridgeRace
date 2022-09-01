@@ -16,10 +16,11 @@ public class EnemyAI : MonoBehaviour{
     [HideInInspector] public Animator animator;
 
     private State currentState;
+    public bool isCollided;
     
 
     public float moveSpeedAI;
-    [HideInInspector] public readonly float MaxMoveSpeedAI = 2f;
+    [HideInInspector] public readonly float MaxMoveSpeedAI = 1.5f;
 
     private readonly float rotationFactorPerFrame = 10f;
 
@@ -33,16 +34,12 @@ public class EnemyAI : MonoBehaviour{
     private void Start() {
         currentState = State.Gathering;
         moveSpeedAI = MaxMoveSpeedAI;
-        switch (currentState) {
-            case State.Gathering:
-                InvokeRepeating(nameof(FindAllCollectibles), 0f, 10f);
-                break;
-        }
     }
 
     private void Update() {
         switch (currentState) {
             case State.Gathering:
+                FindAllCollectibles();
                 FindClosestBrick();
                 animator.SetBool("isRunning", true);
                 break;
@@ -89,6 +86,10 @@ public class EnemyAI : MonoBehaviour{
 
         Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
         transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
+    }
+
+    private void GoBuilding() {
+
     }
 
 }

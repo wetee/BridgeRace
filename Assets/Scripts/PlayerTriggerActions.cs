@@ -2,19 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 using Random = UnityEngine.Random;
 
 
 public class PlayerTriggerActions : MonoBehaviour {
 
     private Player player;
-    public event EventHandler OnBrickGathered;
-
+    private Animator animator;
     [SerializeField] private Transform parent;
+
 
 
     private void Awake() {
         player = GetComponent<Player>();
+        animator = transform.Find("Model").GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -25,11 +28,9 @@ public class PlayerTriggerActions : MonoBehaviour {
             brickComponent.order = player.playerSO.stackAmount;
             brickComponent.player = player;
             other.transform.Find("Model").GetComponent<Renderer>().material = player.playerSO.material;
+            BrickSpawnSystem.Instance.DecreaseBrick(other.gameObject.tag);
             other.gameObject.tag = "InBack";
-            if (TryGetComponent(out EnemyAI enemyAI)) {
-                enemyAI.FindAllCollectibles();
-            }
-            OnBrickGathered?.Invoke(this, EventArgs.Empty);
+
         }
     }
 
@@ -39,14 +40,27 @@ public class PlayerTriggerActions : MonoBehaviour {
         Player collidedPlayer = collision.gameObject.GetComponent<Player>();
 
         if (player.Back.transform.childCount >= collidedPlayer.Back.transform.childCount) {
-            collision.gameObject.GetComponent<EnemyAI>().animator.SetTrigger("isCollided");
-            StartCoroutine(SpeedHandlerForEnemy(collision.gameObject.GetComponent<EnemyAI>()));
+            collision.transform.Find("Model").GetComponent<Animator>().SetTrigger("isCollided");
+            EnemyAI enemyAI = collision.gameObject.GetComponent<EnemyAI>();
+
+            if (!enemyAI.isCollided) {
+                StartCoroutine(SpeedHandlerForEnemy(enemyAI));
+            }
+            
             collidedPlayer.playerSO.stackAmount = 0;
             AddForceAllBricks(collidedPlayer.Back.transform);
         }
         else {
-            transform.Find("Model").GetComponent<Animator>().SetTrigger("isCollided");
-            StartCoroutine(SpeedHandlerForPlayer(GetComponent<PlayerMovement>()));
+            animator.SetTrigger("isCollided");
+
+            if (TryGetComponent(out EnemyAI enemyAI)) {
+                if (!enemyAI.isCollided) StartCoroutine(SpeedHandlerForEnemy(enemyAI));
+            }
+            else {
+                InputManager tempInputManager = GetComponent<InputManager>();
+                if (!tempInputManager.IsCollided) StartCoroutine(SpeedHandlerForPlayer(GetComponent<PlayerMovement>()));
+                
+            }
             player.playerSO.stackAmount = 0;
             AddForceAllBricks(player.Back.transform);
         }
@@ -62,7 +76,8 @@ public class PlayerTriggerActions : MonoBehaviour {
             BoxCollider tempCollider = bricks[i].gameObject.GetComponent<BoxCollider>();
             Rigidbody tempRigidbody = bricks[i].gameObject.GetComponent<Rigidbody>();
 
-            StartCoroutine(ColliderRBHandler(tempRigidbody, tempCollider));
+            tempRigidbody.isKinematic = false;
+            tempCollider.isTrigger = false;
 
             bricks[i].gameObject.tag = "Collectible";
             bricks[i].transform.SetParent(parent);
@@ -70,31 +85,22 @@ public class PlayerTriggerActions : MonoBehaviour {
             tempRigidbody.AddForce(tempForce, ForceMode.Impulse);
             bricks[i].transform.Find("Model").GetComponent<Renderer>().material = Resources.Load<Material>("CollectibleMaterial");
         }
-
     }
-
-    private IEnumerator ColliderRBHandler(Rigidbody rigidbody, BoxCollider boxCollider) {
-        rigidbody.isKinematic = false;
-        boxCollider.isTrigger = false;
-        yield return new WaitForSeconds(1f);
-        rigidbody.isKinematic = true;
-        boxCollider.isTrigger = true;
-    }
-
 
     private IEnumerator SpeedHandlerForPlayer(PlayerMovement playerMovement) {
+        InputManager tempInputManager = GetComponent<InputManager>();
         playerMovement.moveSpeed = 0f;
-        GetComponent<InputManager>().IsCollided = true;
+        tempInputManager.IsCollided = true;
         yield return new WaitForSeconds(2.85f);
-        GetComponent<InputManager>().IsCollided = false;
+        tempInputManager.IsCollided = false;
         playerMovement.moveSpeed = playerMovement.MaxMoveSpeed;
-
     }
 
     private IEnumerator SpeedHandlerForEnemy(EnemyAI enemyAI) {
-        enemyAI.moveSpeedAI = 0f;
+        enemyAI.moveSpeedAI = 0;
+        enemyAI.isCollided = true;
         yield return new WaitForSeconds(3f);
         enemyAI.moveSpeedAI = enemyAI.MaxMoveSpeedAI;
-
+        enemyAI.isCollided = false;
     }
 }

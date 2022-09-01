@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3229076404053875944}
   - component: {fileID: 6849698819727445772}
   - component: {fileID: 1032096646268158774}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pfBlueBrick
   m_TagString: BlueBrick
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1032096646268158774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b15c610e859bb45b0a7910ad45669a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickSO: {fileID: 11400000, guid: acef943669d15d44a8fdda9a4ad50787, type: 2}
   player: {fileID: 0}
   order: 0
 --- !u!1 &3229076405067652051
@@ -90,7 +89,7 @@ GameObject:
   - component: {fileID: 3229076405067652050}
   - component: {fileID: 3229076405067652052}
   - component: {fileID: 3229076405067652053}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

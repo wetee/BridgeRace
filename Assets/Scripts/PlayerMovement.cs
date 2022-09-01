@@ -23,9 +23,9 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     private void HandleMovement() {
-        Vector3 tempSpeed = new Vector3(inputManager.MoveInput.x, 0f, inputManager.MoveInput.y);
+        Vector3 tempDirection = new Vector3(inputManager.MoveInput.x, 0f, inputManager.MoveInput.y);
 
-        transform.position += moveSpeed * Time.deltaTime * tempSpeed;
+        transform.position += moveSpeed * Time.deltaTime * tempDirection;
     }
 
 

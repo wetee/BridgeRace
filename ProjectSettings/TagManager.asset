@@ -10,6 +10,10 @@ TagManager:
   - EnemyAI
   - Ground
   - InBack
+  - PinkBrick
+  - OrangeBrick
+  - Stair
+  - StairStep
   layers:
   - Default
   - TransparentFX
@@ -20,8 +24,8 @@ TagManager:
   - Ground
   - Brick
   - Player
-  - 
-  - 
+  - AllTypeCollectible
+  - Stair
   - 
   - 
   - 
