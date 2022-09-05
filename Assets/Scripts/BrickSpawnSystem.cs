@@ -26,9 +26,6 @@ public class BrickSpawnSystem : MonoBehaviour
         InvokeRepeating(nameof(InstantiateBricks), 0f, 5f);
     }
 
-    private void Update() {
-        
-    }
 
     private void InitalizeTable() {
         foreach(string tag in tags) {
@@ -49,12 +46,10 @@ public class BrickSpawnSystem : MonoBehaviour
         for(int x = -10; x < 11; x += 2) {
             for(int z = -6; z < 7; z += 2) {
                 if (!isPositionEmpty(x, z)) continue;
-                //Debug.Log(x + " " + z + " is empty? "+ isPositionEmpty(x,z));
 
                 Brick tempBrick = PickRandomBrick();
                 if (tempBrick != null) {
                     int tempLevel = LevelFinder(tempBrick);
-                    //Debug.Log("its not null");
                     Instantiate(tempBrick, new Vector3(x, tempLevel + 0.15f, z), Quaternion.identity, parent);
                 }
             }

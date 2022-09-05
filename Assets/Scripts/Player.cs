@@ -15,7 +15,6 @@ public class Player : MonoBehaviour {
         playerSO.stackAmount = 0;
     }
 
-
     public void IncrementAmount() {
         playerSO.stackAmount++;
     }

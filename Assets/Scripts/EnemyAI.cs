@@ -11,16 +11,18 @@ public class EnemyAI : MonoBehaviour{
     }
 
     private Player player;
+    private EnemyBuild enemyBuild;
     private string tagForBrick;
+    
     List<GameObject> bricks;
     [HideInInspector] public Animator animator;
 
-    private State currentState;
+    public State currentState;
     public bool isCollided;
     
 
     public float moveSpeedAI;
-    [HideInInspector] public readonly float MaxMoveSpeedAI = 1.5f;
+    [HideInInspector] public readonly float MaxMoveSpeedAI = 3.25f;
 
     private readonly float rotationFactorPerFrame = 10f;
 
@@ -29,6 +31,7 @@ public class EnemyAI : MonoBehaviour{
         player = GetComponent<Player>();
         tagForBrick = player.playerSO.TagCheckForStacking;
         animator = transform.Find("Model").GetComponent<Animator>();
+        enemyBuild = GetComponent<EnemyBuild>();
     }
 
     private void Start() {
@@ -40,10 +43,15 @@ public class EnemyAI : MonoBehaviour{
         switch (currentState) {
             case State.Gathering:
                 FindAllCollectibles();
-                FindClosestBrick();
+                GatherClosestBricks();
                 animator.SetBool("isRunning", true);
+                if (player.playerSO.stackAmount >= 5) {
+                    currentState = State.Building;
+                }
                 break;
             case State.Building:
+                animator.SetBool("isRunning", true);
+          
                 break;
             case State.DoNothing:
                 animator.SetBool("isRunning", false);
@@ -57,7 +65,7 @@ public class EnemyAI : MonoBehaviour{
     }
 
 
-    private void FindClosestBrick() { 
+    private void GatherClosestBricks() { 
         float minDistance = Mathf.Infinity;
         Transform closestBrick = null;
         foreach (GameObject brickGameObject in bricks) {
@@ -80,16 +88,12 @@ public class EnemyAI : MonoBehaviour{
 
     }
 
-    private void HandleFacing(Vector3 direction) {
+    public void HandleFacing(Vector3 direction) {
         Vector3 positionToLookAt = new(direction.x, 0f, direction.z);
         Quaternion currentRotation = transform.rotation;
 
         Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
         transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
-    }
-
-    private void GoBuilding() {
-
     }
 
 }

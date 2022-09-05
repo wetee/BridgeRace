@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour{
     private InputManager inputManager;
 
     [HideInInspector] public float moveSpeed;
-    [HideInInspector] public readonly float MaxMoveSpeed = 3f;
+    [HideInInspector] public readonly float MaxMoveSpeed = 2.5f;
 
 
     private void Awake() {

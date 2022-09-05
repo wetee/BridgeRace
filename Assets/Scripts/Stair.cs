@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimStateController : MonoBehaviour {
+public class Stair : MonoBehaviour{
 
-
+    public Player player;
+    
 }
